@@ -1,4 +1,4 @@
-class loginPage{
+class sidebarMenu{
     visit(){ cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')}
     inputUsername(username){
         cy.get('[name="username"]').type(username)
@@ -8,20 +8,17 @@ class loginPage{
         cy.get('[name="password"]').type(password)
         cy.get('[name="password"]').should('have.value', password)
     }
-    intercept(alias="pomlogin"){
-        cy.intercept("GET","**/auth/validate").as('pomlogin');
+    intercept(alias="Requestreset"){
+        cy.intercept("GET","**/auth/requestPasswordResetCode").as('Requestreset');
         return this;
     }
     tekantombolLogin(){cy.get('[type="submit"]').click()}
     verifyLoginSuccess(){cy.url().should("include","/dashboard")}
-    verifyUsernamePasswordError(){
-        cy.log("Invalid credentials")
+    tekanburgerTiga(){
+        cy.get('[role="navigation"]').expand
     }
-    verifyUsernameRequiredError(){
-        cy.log("Required")    
-    }
-    verifyPasswordRequiredError(){
-        cy.log("Required") 
+    tekantandaX(){
+        cy.get('[role="navigation"]').collapse
     }
 }
-export default new loginPage()
+export default new sidebarMenu()
